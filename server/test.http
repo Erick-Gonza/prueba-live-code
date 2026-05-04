@@ -1,0 +1,6 @@
+POST http://localhost:3000/analyze
+Content-Type: application/json
+
+{
+	"text": "Apple presentó hoy el iPhone 17 con una cámara revolucionaria de 200MP y un chip A19 que promete el doble de rendimiento. Los analistas esperan que las ventas superen los 100 millones de unidades en el primer trimestre."
+}
