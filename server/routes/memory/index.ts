@@ -44,16 +44,23 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.get('/grouped-by-category', async (req: Request, res: Response) => {
 	try {
-		if (memories.length !== 0) {
-			const groupedMemories = { ...categories };
-			groupedMemories.forEach((memory: AnalysisResult) => {
-				const category = categories.find((cat) => cat.name === memory.category);
-				if (category) {
-					category.value += 1;
-				}
-			});
-			return res.json(groupedMemories);
+		if (memories.length === 0) {
+			return res.json(categories);
 		}
+
+		const groupedMemories = categories.map((cat) => ({
+			name: cat.name,
+			value: 0,
+		}));
+
+		memories.forEach((memory: AnalysisResult) => {
+			const category = groupedMemories.find((cat) => cat.name === memory.category);
+			if (category) {
+				category.value += 1;
+			}
+		});
+
+		return res.json(groupedMemories);
 	} catch (error) {
 		res.status(500).json({ error: (error as Error).message });
 	}

@@ -1,0 +1,8 @@
+node_modules/
+.env*.local
+.next/
+out/
+build/
+.vercel/
+.pnpm-store/
+coverage/
